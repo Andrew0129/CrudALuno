@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\CrudAluno\\CrudAluno\\CrudAluno\\CrudAluno.csproj": {}
+    "C:\\Programas\\CrudAluno\\CrudAluno\\CrudAluno\\CrudAluno\\CrudAluno.csproj": {}
   },
   "projects": {
-    "C:\\CrudAluno\\CrudAluno\\CrudAluno\\CrudAluno.csproj": {
+    "C:\\Programas\\CrudAluno\\CrudAluno\\CrudAluno\\CrudAluno\\CrudAluno.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\CrudAluno\\CrudAluno\\CrudAluno\\CrudAluno.csproj",
+        "projectUniqueName": "C:\\Programas\\CrudAluno\\CrudAluno\\CrudAluno\\CrudAluno\\CrudAluno.csproj",
         "projectName": "CrudAluno",
-        "projectPath": "C:\\CrudAluno\\CrudAluno\\CrudAluno\\CrudAluno.csproj",
+        "projectPath": "C:\\Programas\\CrudAluno\\CrudAluno\\CrudAluno\\CrudAluno\\CrudAluno.csproj",
         "packagesPath": "C:\\Users\\Andrew\\.nuget\\packages\\",
-        "outputPath": "C:\\CrudAluno\\CrudAluno\\CrudAluno\\obj\\",
+        "outputPath": "C:\\Programas\\CrudAluno\\CrudAluno\\CrudAluno\\CrudAluno\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Andrew\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -39,16 +39,6 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
-          "dependencies": {
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[3.1.0, )"
-            },
-            "Pomelo.EntityFrameworkCore.MySql": {
-              "target": "Package",
-              "version": "[3.1.0, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",

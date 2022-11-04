@@ -3,12 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CrudAluno.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class first : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Alunos",
+                name: "Students",
                 columns: table => new
                 {
                     RA = table.Column<int>(nullable: false)
@@ -19,14 +19,14 @@ namespace CrudAluno.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Alunos", x => x.RA);
+                    table.PrimaryKey("PK_Students", x => x.RA);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Alunos");
+                name: "Students");
         }
     }
 }

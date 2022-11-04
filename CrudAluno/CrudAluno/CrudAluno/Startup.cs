@@ -10,6 +10,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using CrudAluno.Context;
+using Microsoft.OpenApi.Models;
+using CrudAluno.BussinesRules.Interface;
+using CrudAluno.BussinesRules;
 
 namespace CrudAluno
 {
@@ -26,11 +29,27 @@ namespace CrudAluno
         public void ConfigureServices(IServiceCollection services)
         {
             var connection = Configuration.GetConnectionString("conectionMySQL");
-            services.AddDbContext<AlunoContext>(options =>
+            services.AddDbContext<StudentContext>(options =>
                 options.UseMySql(connection)
             );
 
-            services.AddRazorPages();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { 
+                    Title = "API de cadastro e busca de aluno", 
+                    Version = "v1",
+                });
+            });
+
+            services.AddControllers().AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
+            });
+
+
+            services.AddScoped<IStudentBussines, StudentBussines>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,14 +69,38 @@ namespace CrudAluno
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseRouting();
+            app.UseSwagger();
 
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("../swagger/v1/swagger.json", "My API V1");
+            });
+
+            app.UseRouting();
+            app.UseAuthentication();
             app.UseAuthorization();
+
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapRazorPages();
+            //});
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller}/{action=Index}/{id?}");
             });
+
+            //app.UseSpa(spa =>
+            //{
+            //    spa.Options.SourcePath = "ClientApp";
+
+            //    if (env.IsDevelopment())
+            //    {
+            //        spa.UseReactDevelopmentServer(npmScript: "start");
+            //    }
+            //});
         }
     }
 }

@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\CrudAluno",
+    "\\CrudAluno\\CrudAluno",
+    "\\CrudAluno\\CrudAluno\\CrudAluno",
+    "\\CrudAluno\\CrudAluno\\CrudAluno\\Controller"
+  ],
+  "SelectedNode": "\\CrudAluno\\CrudAluno\\CrudAluno\\Startup.cs",
+  "PreviewInSolutionExplorer": false
+}

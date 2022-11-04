@@ -2,21 +2,23 @@
 using CrudAluno.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CrudAluno.Migrations
 {
-    [DbContext(typeof(AlunoContext))]
-    partial class AlunoContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(StudentContext))]
+    [Migration("20221103004118_first")]
+    partial class first
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("CrudAluno.Model.Aluno", b =>
+            modelBuilder.Entity("CrudAluno.Model.Student", b =>
                 {
                     b.Property<int>("RA")
                         .ValueGeneratedOnAdd()
@@ -33,7 +35,7 @@ namespace CrudAluno.Migrations
 
                     b.HasKey("RA");
 
-                    b.ToTable("Alunos");
+                    b.ToTable("Students");
                 });
 #pragma warning restore 612, 618
         }

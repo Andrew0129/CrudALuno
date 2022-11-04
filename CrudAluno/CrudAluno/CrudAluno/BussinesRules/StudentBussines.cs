@@ -1,5 +1,6 @@
 ﻿using CrudAluno.BussinesRules.Interface;
 using CrudAluno.Context;
+using CrudAluno.Data.VO;
 using CrudAluno.Model;
 using CrudAluno.ServiceResult;
 using System;
@@ -52,21 +53,29 @@ namespace CrudAluno.BussinesRules
 
         public Result<string> DeleteStudent(int ra)
         {
-            var studentId = _studentContext.Students.FirstOrDefault(x => x.RA == ra);
-            if (studentId != null)
+            var student =  _studentContext.Students.Find(ra);
+            if (student == null)
             {
-                _studentContext.Students.Remove(studentId);
+                return new Result<string>().InvalidResult("student is null");
             }
+            _studentContext.Students.Remove(student);
 
+            _studentContext.SaveChanges();
             return new Result<string>().SuccessResult();
         }
 
         public Result<string> UpdateStudent(Student student)
         {
-            var studentId =  _studentContext.Students.FirstOrDefault(x => x.RA == student.RA);
+            var studentId = _studentContext.Students.Find(student.RA);
             if (studentId != null)
             {
-                _studentContext.Students.Update(student);
+                studentId.RA = studentId.RA;
+                studentId.Name = student.Name;
+                studentId.CPF = studentId.CPF;
+                studentId.Email = student.Email;
+
+                _studentContext.Students.Update(studentId);
+                _studentContext.SaveChanges();
             }
             else
             {
@@ -78,16 +87,16 @@ namespace CrudAluno.BussinesRules
         }
 
 
-        public Result<Student> GetAllStudents()
+        public Result<List<Student>> GetAllStudents()
         {
-            var student = _studentContext.Students.Find();
+            var student = _studentContext.Students.ToList();
             if (student == null)
             {
-                return new Result<Student>().InvalidResult("No have students!");
+                return new Result<List<Student>>().InvalidResult("No have students!");
             }
 
 
-            return new Result<Student>().SuccessResult(student);
+            return new Result<List<Student>>().SuccessResult(student);
         }
     }
 }

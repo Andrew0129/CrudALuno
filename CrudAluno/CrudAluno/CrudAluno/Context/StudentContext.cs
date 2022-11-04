@@ -13,5 +13,11 @@ namespace CrudAluno.Context
         {
         }
         public DbSet<Student> Students { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Student>()
+                .HasKey(s => s.RA);
+        }
     }
 }

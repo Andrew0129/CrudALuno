@@ -12,6 +12,6 @@ namespace CrudAluno.BussinesRules.Interface
         Result<string> CreateStudent(Student student);
         Result<string> UpdateStudent(Student student);
         Result<string> DeleteStudent(int ra);
-        Result<Student> GetAllStudents();
+        Result<List<Student>> GetAllStudents();
     }
 }

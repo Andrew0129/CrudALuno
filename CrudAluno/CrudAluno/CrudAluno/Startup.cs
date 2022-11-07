@@ -46,6 +46,17 @@ namespace CrudAluno
                 options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
             });
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder =>
+                    {
+                        builder
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                    });
+            });
 
             services.AddScoped<IStudentBussines, StudentBussines>();
 
@@ -55,6 +66,9 @@ namespace CrudAluno
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
+            app.UseCors("CorsPolicy");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -92,13 +106,11 @@ namespace CrudAluno
                     pattern: "{controller}/{action=Index}/{id?}");
             });
 
-            //app.UseSpa(spa =>
+            //app.UseSpa(configuration: builder =>
             //{
-            //    spa.Options.SourcePath = "ClientApp";
-
             //    if (env.IsDevelopment())
             //    {
-            //        spa.UseReactDevelopmentServer(npmScript: "start");
+            //        builder.UseProxyToSpaDevelopmentServer("http://localhost:8080/");
             //    }
             //});
         }

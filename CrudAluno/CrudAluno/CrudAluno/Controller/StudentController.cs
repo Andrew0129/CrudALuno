@@ -54,7 +54,7 @@ namespace CrudAluno.Controller
 
             var result = _studentBussines.UpdateStudent(student);
             if (result.ResultType == ResultType.Ok)
-                return Ok(result.Data);
+                return Ok();
 
             return BadRequest(result.Error);
         }
@@ -72,7 +72,7 @@ namespace CrudAluno.Controller
 
             var result = _studentBussines.DeleteStudent(ra);
             if (result.ResultType == ResultType.Ok)
-                return Ok(result.Data);
+                return Ok();
 
             return BadRequest(result.Error);
         }

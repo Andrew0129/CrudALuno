@@ -51,20 +51,20 @@ namespace CrudAluno.BussinesRules
             return new Result<string>().SuccessResult();
         }
 
-        public Result<string> DeleteStudent(int ra)
+        public Result DeleteStudent(int ra)
         {
             var student =  _studentContext.Students.Find(ra);
             if (student == null)
             {
-                return new Result<string>().InvalidResult("student is null");
+                return new Result().InvalidResult("student is null");
             }
             _studentContext.Students.Remove(student);
 
             _studentContext.SaveChanges();
-            return new Result<string>().SuccessResult();
+            return new Result().SuccessResult();
         }
 
-        public Result<string> UpdateStudent(Student student)
+        public Result UpdateStudent(Student student)
         {
             var studentId = _studentContext.Students.Find(student.RA);
             if (studentId != null)
@@ -83,7 +83,7 @@ namespace CrudAluno.BussinesRules
             }
 
 
-            return new Result<string>().SuccessResult();
+            return new Result().SuccessResult();
         }
 
 
